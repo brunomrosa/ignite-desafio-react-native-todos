@@ -24,8 +24,13 @@ export function Home() {
   }
 
   function handleRemoveTask(id: number) {
-    //TODO - remove task from state
     setTasks(tasks.filter((task) => task.id !== id));
+  }
+
+  function handleSubmitEditing(id: number, value: string) {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, title: value } : task))
+    );
   }
 
   return (
@@ -37,6 +42,7 @@ export function Home() {
       <TasksList
         tasks={tasks}
         toggleTaskDone={handleToggleTaskDone}
+        handleSubmitEditing={handleSubmitEditing}
         removeTask={handleRemoveTask}
       />
     </View>
